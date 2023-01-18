@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
@@ -98,5 +99,21 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<MyErrorDetails>(err,HttpStatus.BAD_REQUEST);
 		
 	}
+	
+	
+	@ExceptionHandler(FoodCartException.class)
+	public ResponseEntity<MyErrorDetails> foodCartExceptionHandler(FoodCartException cartException, WebRequest request){
+		
+		MyErrorDetails error = new MyErrorDetails();
+		
+		error.setTimeStamp(LocalDateTime.now());
+		error.setMessage(cartException.getMessage());
+		error.setDetails(request.getDescription(false));
+		
+		return new ResponseEntity<MyErrorDetails>(error, HttpStatus.BAD_REQUEST);
+		
+	}
+	
+	
 
 }
