@@ -1,5 +1,6 @@
 package com.masai.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +77,17 @@ public class CustomerServiceImpl implements CustomerService{
 				throw new CustomerNotFound("Customer not found with this Id: "+customerId);
 				
 			}
+	}
+
+	@Override
+	public List<Customer> viewAllCustomer() throws CustomerNotFound {
+		List<Customer> cList = CR.findAll();
+
+		if(cList.isEmpty()){
+			throw new CustomerNotFound("There is no Customer present in the database");
+		}
+
+		return cList;
 	}
 	
 	
