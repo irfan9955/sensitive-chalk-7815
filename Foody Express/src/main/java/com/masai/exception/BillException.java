@@ -1,6 +1,6 @@
 package com.masai.exception;
 
-public class BillException extends RuntimeException{
+public class BillException extends Exception{
 
 	public BillException() {
 		super();

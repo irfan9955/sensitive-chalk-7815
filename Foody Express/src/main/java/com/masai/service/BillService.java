@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.masai.exception.BillException;
 import com.masai.model.Bill;
 
-public interface Bill_Service {
+public interface BillService {
 	
 	public Bill addBill(Integer orderId, String uniqueId) throws BillException;
 
