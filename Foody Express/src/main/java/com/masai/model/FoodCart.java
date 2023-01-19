@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.springframework.stereotype.Service;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +26,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Service
 public class FoodCart {
 	
 
@@ -36,6 +39,6 @@ public class FoodCart {
 	
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	private List<Item> items = new ArrayList<>();
+	private List<Item> items = new ArrayList<>();	
 
 }
