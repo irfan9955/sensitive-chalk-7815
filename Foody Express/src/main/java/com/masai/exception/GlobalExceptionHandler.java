@@ -42,6 +42,19 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<MyErrorDetails>(err,HttpStatus.BAD_REQUEST);
 		
 	}
+
+	@ExceptionHandler(BillException.class)
+    public ResponseEntity<MyErrorDetails> BillException(BillException cnf,WebRequest req){
+		
+		MyErrorDetails err = new MyErrorDetails();
+		
+		err.setTimeStamp(LocalDateTime.now());
+		err.setMessage(cnf.getMessage());
+		err.setDetails(req.getDescription(false));
+		
+		return new ResponseEntity<MyErrorDetails>(err,HttpStatus.BAD_REQUEST);
+		
+	}
 	
 	
 
