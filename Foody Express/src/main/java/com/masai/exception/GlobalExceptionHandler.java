@@ -116,4 +116,17 @@ public class GlobalExceptionHandler {
 	
 	
 
+	@ExceptionHandler(ItemNotFoundException.class)
+	public ResponseEntity<MyErrorDetails> ItemNotFoundExceptionHandler(ItemNotFoundException itemException, WebRequest request){
+		
+		MyErrorDetails error = new MyErrorDetails();
+		
+		error.setTimeStamp(LocalDateTime.now());
+		error.setMessage(itemException.getMessage());
+		error.setDetails(request.getDescription(false));
+		
+		return new ResponseEntity<MyErrorDetails>(error, HttpStatus.NOT_ACCEPTABLE);
+		
+	}
+
 }

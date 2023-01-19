@@ -39,44 +39,6 @@ public class FoodCart {
 	
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	private List<Item> items = new ArrayList<>();
-
-
-	public FoodCart() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-
-	public String getCartId() {
-		return cartId;
-	}
-
-
-	public void setCartId(String cartId) {
-		this.cartId = cartId;
-	}
-
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
-
-	public List<Item> getItems() {
-		return items;
-	}
-
-
-	public void setItems(List<Item> items) {
-		this.items = items;
-	}
-	
-	
+	private List<Item> items = new ArrayList<>();	
 
 }
