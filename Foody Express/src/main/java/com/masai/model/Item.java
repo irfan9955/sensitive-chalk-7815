@@ -4,6 +4,7 @@ package com.masai.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -14,10 +15,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConstructorBinding;
+import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.masai.repository.ItemRepository;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -25,12 +30,14 @@ import lombok.ToString;
 
 
 @Entity
-@ConstructorBinding
 @NoArgsConstructor
 @Data
 @ToString
 @EqualsAndHashCode
+@AllArgsConstructor
+@Service
 public class Item {
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -49,7 +56,6 @@ public class Item {
 	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL,mappedBy = "items",fetch =  FetchType.EAGER)
 	private List<Restaurant> resturants = new ArrayList<>();
-	
-	
 
+	
 }
