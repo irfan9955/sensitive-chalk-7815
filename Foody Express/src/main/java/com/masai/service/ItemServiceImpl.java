@@ -32,6 +32,7 @@ public class ItemServiceImpl implements ItemService {
 		return savedItem;
 	}
 	
+	
 
 	@Override
 	public Item updateItem(Item item) throws ItemNotFoundException {
@@ -73,6 +74,7 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	
+	
 	@Override
 	public Item removeItem(Item item) throws ItemNotFoundException {
 		
@@ -90,6 +92,8 @@ public class ItemServiceImpl implements ItemService {
 			throw new ItemNotFoundException("No Such Item to be Removed...... Please add it First");
 		}
 	}
+	
+	
 
 	@Override
 	public List<Item> viewAllItemsByCategory(Category category) throws ItemNotFoundException {
@@ -110,6 +114,8 @@ public class ItemServiceImpl implements ItemService {
 		return listByCategory;
 	}
 
+	
+	
 	@Override
 	public List<Item> viewAllItemsOfRetaurant(Restaurant restaurant) throws ItemNotFoundException {
 		
@@ -118,6 +124,8 @@ public class ItemServiceImpl implements ItemService {
 		return null;
 	}
 
+
+	
 	@Override
 	public List<Item> viewAllItemsByName(String name) throws ItemNotFoundException {
 		
