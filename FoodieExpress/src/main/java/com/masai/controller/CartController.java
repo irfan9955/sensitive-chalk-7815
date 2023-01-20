@@ -1,5 +1,7 @@
 package com.masai.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +24,7 @@ public class CartController {
 	
 	
 	@PutMapping(value = "/addItemToCart")
-	public ResponseEntity<FoodCart> addItemToCartHandler(@RequestBody FoodCart foodCart, @RequestBody Item item){
+	public ResponseEntity<FoodCart> addItemToCartHandler(@Valid @RequestBody FoodCart foodCart, @Valid @RequestBody Item item){
 		
 		FoodCart updatedCart = cartService.addItemToCart(foodCart, item);
 		
@@ -32,7 +34,7 @@ public class CartController {
 	
 	
 	@PutMapping(value = "/increaseItemQuantity")
-	public ResponseEntity<FoodCart> increaseQuantityOfItemHandler(@RequestBody FoodCart foodCart, @RequestBody Item item, Integer quantity){
+	public ResponseEntity<FoodCart> increaseQuantityOfItemHandler(@Valid @RequestBody FoodCart foodCart, @Valid @RequestBody Item item, Integer quantity){
 		
 		FoodCart updateCart = cartService.increaseQuantityOfItem(foodCart, item, quantity);
 		
@@ -43,7 +45,7 @@ public class CartController {
 	
 	
 	@PutMapping(value = "/reduceItemQuantity")
-	public ResponseEntity<FoodCart> reduceQuantityOfItemHandler(@RequestBody FoodCart foodCart, @RequestBody Item item, Integer quantity){
+	public ResponseEntity<FoodCart> reduceQuantityOfItemHandler(@Valid @RequestBody FoodCart foodCart, @Valid @RequestBody Item item, Integer quantity){
 		
 		FoodCart updateCart = cartService.reduceQuantityOfItem(foodCart, item, quantity);
 		
@@ -54,7 +56,7 @@ public class CartController {
 	
 	
 	@PutMapping(value = "/removeItem")
-	public ResponseEntity<FoodCart> removeItemFromCartHandler(@RequestBody FoodCart foodCart, @RequestBody Item item){
+	public ResponseEntity<FoodCart> removeItemFromCartHandler(@Valid @RequestBody FoodCart foodCart, @Valid @RequestBody Item item){
 		
 		FoodCart updateCart = cartService.removeItemFromCart(foodCart, item);
 		
@@ -66,7 +68,7 @@ public class CartController {
 
 
 	@PutMapping(value = "/clearCart")
-	public ResponseEntity<FoodCart> cleartCartHandler(@RequestBody FoodCart foodCart){
+	public ResponseEntity<FoodCart> cleartCartHandler(@Valid @RequestBody FoodCart foodCart){
 		
 		FoodCart emptyCart = cartService.clearCart(foodCart);
 		

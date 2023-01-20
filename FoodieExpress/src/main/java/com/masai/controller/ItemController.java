@@ -2,6 +2,8 @@ package com.masai.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +35,7 @@ public class ItemController {
 	
 	
 	@PostMapping("/add")
-	public ResponseEntity<Item> addItemHandler(@RequestBody Item item){
+	public ResponseEntity<Item> addItemHandler(@Valid @RequestBody Item item){
 		
 		Item savedItem = itemService.addItem(item);
 		
@@ -44,7 +46,7 @@ public class ItemController {
 	
 	
 	@PutMapping("/update")
-	public ResponseEntity<Item> updateItemHandler(@RequestBody Item item){
+	public ResponseEntity<Item> updateItemHandler(@Valid @RequestBody Item item){
 		
 		Item updatedItem = itemService.updateItem(item);
 		
@@ -77,7 +79,7 @@ public class ItemController {
 	
 	
 	@PostMapping("/getByCategory")
-	public ResponseEntity<List<Item>> viewAllItemsByCategoryHandler(@RequestBody Category category){
+	public ResponseEntity<List<Item>> viewAllItemsByCategoryHandler(@Valid @RequestBody Category category){
 		
 		List<Item> listItem = itemService.viewAllItemsByCategory(category);
 		
@@ -89,7 +91,7 @@ public class ItemController {
 	
 
 	@PostMapping("/getByRestaurant")
-	public ResponseEntity<List<Item>> viewAllItemsOfRestaurantHandler(@RequestBody Restaurant restaurant) throws ItemNotFoundException, RestaurantException{
+	public ResponseEntity<List<Item>> viewAllItemsOfRestaurantHandler(@Valid @RequestBody Restaurant restaurant) throws ItemNotFoundException, RestaurantException{
 		
 		List<Item> listItem = itemService.viewAllItemsByRetaurant(restaurant);
 		
