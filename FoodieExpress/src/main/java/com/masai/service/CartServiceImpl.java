@@ -1,12 +1,17 @@
 package com.masai.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.masai.exception.CustomerNotFound;
 import com.masai.exception.FoodCartException;
+import com.masai.model.Customer;
 import com.masai.model.FoodCart;
 import com.masai.model.Item;
 import com.masai.repository.CartRepository;
+import com.masai.repository.CustomerRepo;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -14,6 +19,31 @@ public class CartServiceImpl implements CartService {
 	
 	@Autowired
 	private CartRepository cartRepository;
+	
+	@Autowired
+	private CustomerRepo customerRepository;
+
+
+	@Override
+	public FoodCart addNewFoodCart(Integer customerId, FoodCart foodCart) throws FoodCartException, CustomerNotFound {
+
+		Optional<Customer> currentCustomer = customerRepository.findById(customerId);
+		
+		if(currentCustomer.isPresent()) {
+			
+			Customer customer = currentCustomer.get();
+			
+			foodCart.setCustomer(customer);
+			
+			FoodCart savedFoodCart = cartRepository.save(foodCart);
+			
+			return savedFoodCart;
+		}
+		else {
+			throw new CustomerNotFound("This customer does not exist....... Please make account first");
+		}
+
+	}
 	
 	
 
@@ -131,5 +161,6 @@ public class CartServiceImpl implements CartService {
 		
 		return emptyCart;
 	}
+
 
 }

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.masai.exception.CustomerNotFound;
+import com.masai.exception.FoodCartException;
 import com.masai.model.FoodCart;
 import com.masai.model.Item;
 import com.masai.service.CartService;
@@ -22,6 +24,15 @@ public class CartController {
 	
 	@Autowired
 	private CartService cartService;
+	
+	
+	@PostMapping("/createFoodCart/{customerId}")
+	public ResponseEntity<FoodCart> addNewFoodCartHandler(@PathVariable Integer customerId,@Valid @RequestBody FoodCart foodCart) throws FoodCartException, CustomerNotFound{
+		
+		FoodCart savedFoodCart = cartService.addNewFoodCart(customerId, foodCart);
+		
+		return new ResponseEntity<>(savedFoodCart,HttpStatus.CREATED);
+	}
 	
 	
 	@PostMapping("/addItemToCart")
