@@ -49,12 +49,16 @@ This project is developed by a team of 4 members with the help of the Spring-Boo
  - View list of available items.
  - Add items to food cart, view cart details, placing the order, update and access other features.
  
-## Contributors
+# Team Members
 
-- @Abhishek Kumar
-- @Md Irfan
-- @Rishabh Mishra
-- @Vinay Pathania
+<h4>1. Md Irfan(Team Lead)</h4>
+
+<h4>2. Abhishek Kumar</h4>
+
+<h4>3. Rishabh Mishra</h4>
+
+<h4>4. Vinay Pathania</h4>
+
 
   
 ## Installation & Run
