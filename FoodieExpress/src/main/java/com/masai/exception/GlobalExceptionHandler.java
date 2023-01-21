@@ -169,6 +169,19 @@ public class GlobalExceptionHandler {
 		
 	}
 	
+	@ExceptionHandler(LoginException.class)
+	public ResponseEntity<MyErrorDetails> loginExceptionHandler(LoginException loginException, WebRequest request){
+		
+		MyErrorDetails error = new MyErrorDetails();
+		
+		error.setTimeStamp(LocalDateTime.now());
+		error.setMessage(loginException.getMessage());
+		error.setDetails(request.getDescription(false));
+		
+		return new ResponseEntity<MyErrorDetails>(error, HttpStatus.BAD_REQUEST);
+		
+	}
+	
 	
 
 }

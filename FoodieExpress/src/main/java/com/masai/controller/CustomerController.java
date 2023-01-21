@@ -1,5 +1,7 @@
 package com.masai.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,23 +31,26 @@ public class CustomerController {
 		
 		Customer AddedCustomer=CS.addCustomer(customer);
 		
-		return new ResponseEntity<Customer>(AddedCustomer,HttpStatus.ACCEPTED);
+		return new ResponseEntity<Customer>(AddedCustomer,HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/updateCustomer")
-	public ResponseEntity<Customer> updateCustomer( @RequestBody Customer customer)throws CustomerNotFound{
+	public ResponseEntity<Customer> updateCustomer(@Valid @RequestBody Customer customer)throws CustomerNotFound{
 		
 		Customer updatedCustomer=CS.updateCustomer(customer);
 		
-		return new ResponseEntity<Customer>(updatedCustomer,HttpStatus.ACCEPTED);
+		return new ResponseEntity<Customer>(updatedCustomer,HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/removeCustomer/{id}")
 	public ResponseEntity<Customer> removeCustomer(@PathVariable("id") Integer customerId)throws CustomerNotFound{
 		
+		System.out.println(customerId+"==========================");
+		
 		Customer removedCustomer=CS.removeCustomer(customerId);
 		
 		return new ResponseEntity<Customer>(removedCustomer,HttpStatus.ACCEPTED);
+		
 	}
 	
 	@GetMapping("/viewCustomer/{id}")
@@ -54,6 +59,15 @@ public class CustomerController {
 		Customer Customer=CS.viewCustomer(customerId);
 		
 		return new ResponseEntity<Customer>(Customer,HttpStatus.ACCEPTED);
+	}
+	
+	@GetMapping("/viewAllCustomer")
+	public ResponseEntity<List<Customer>> viewAllCustomerHandler() throws CustomerNotFound{
+		
+		List<Customer> customers = CS.viewAllCustomer();
+		
+		return new ResponseEntity<>(customers,HttpStatus.OK);
+		
 	}
 	
 	

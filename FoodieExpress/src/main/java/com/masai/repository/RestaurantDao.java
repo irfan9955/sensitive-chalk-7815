@@ -12,6 +12,8 @@ import com.masai.model.Restaurant;
 public interface RestaurantDao extends JpaRepository<Restaurant, Integer>{
 
 	public List<Restaurant> findByAddress(Address address);
+
+	public Restaurant findByMobileNumber(String mobileNo);
 	
 	
 }

@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +28,8 @@ public class OrderDetails {
 	private Integer orderId;
 	
 	private LocalDate orderDate = LocalDate.now();
-		
+	
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	private FoodCart cart;
 	

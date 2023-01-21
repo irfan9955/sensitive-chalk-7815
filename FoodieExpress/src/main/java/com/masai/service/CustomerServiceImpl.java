@@ -83,6 +83,7 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public List<Customer> viewAllCustomer() throws CustomerNotFound {
+		
 		List<Customer> cList = CR.findAll();
 
 		if(cList.isEmpty()){

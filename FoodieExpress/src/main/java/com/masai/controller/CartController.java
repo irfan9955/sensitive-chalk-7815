@@ -1,19 +1,22 @@
 package com.masai.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.model.FoodCart;
 import com.masai.model.Item;
 import com.masai.service.CartService;
 
-@RestController
-@RequestMapping("/cart")
+@RestController("/cart")
 public class CartController {
 
 	
@@ -21,7 +24,7 @@ public class CartController {
 	private CartService cartService;
 	
 	
-	@PutMapping(value = "/addItemToCart")
+	@PostMapping("/addItemToCart")
 	public ResponseEntity<FoodCart> addItemToCartHandler(@RequestBody FoodCart foodCart, @RequestBody Item item){
 		
 		FoodCart updatedCart = cartService.addItemToCart(foodCart, item);
@@ -31,8 +34,8 @@ public class CartController {
 	}
 	
 	
-	@PutMapping(value = "/increaseItemQuantity")
-	public ResponseEntity<FoodCart> increaseQuantityOfItemHandler(@RequestBody FoodCart foodCart, @RequestBody Item item, Integer quantity){
+	@PutMapping("/increaseItemQuantity/{quantity}")
+	public ResponseEntity<FoodCart> increaseQuantityOfItemHandler(@Valid @RequestBody FoodCart foodCart,@Valid @RequestBody Item item,@PathVariable("quantity") Integer quantity){
 		
 		FoodCart updateCart = cartService.increaseQuantityOfItem(foodCart, item, quantity);
 		
@@ -42,8 +45,8 @@ public class CartController {
 	
 	
 	
-	@PutMapping(value = "/reduceItemQuantity")
-	public ResponseEntity<FoodCart> reduceQuantityOfItemHandler(@RequestBody FoodCart foodCart, @RequestBody Item item, Integer quantity){
+	@PutMapping("/reduceItemQuantity/{quantity}")
+	public ResponseEntity<FoodCart> reduceQuantityOfItemHandler(@Valid @RequestBody FoodCart foodCart,@Valid @RequestBody Item item,@PathVariable("quantity") Integer quantity){
 		
 		FoodCart updateCart = cartService.reduceQuantityOfItem(foodCart, item, quantity);
 		
@@ -53,8 +56,8 @@ public class CartController {
 	
 	
 	
-	@PutMapping(value = "/removeItem")
-	public ResponseEntity<FoodCart> removeItemFromCartHandler(@RequestBody FoodCart foodCart, @RequestBody Item item){
+	@DeleteMapping("/removeItem")
+	public ResponseEntity<FoodCart> removeItemFromCartHandler(@Valid @RequestBody FoodCart foodCart,@Valid @RequestBody Item item){
 		
 		FoodCart updateCart = cartService.removeItemFromCart(foodCart, item);
 		
@@ -66,7 +69,7 @@ public class CartController {
 
 
 	@PutMapping(value = "/clearCart")
-	public ResponseEntity<FoodCart> cleartCartHandler(@RequestBody FoodCart foodCart){
+	public ResponseEntity<FoodCart> cleartCartHandler(@Valid @RequestBody FoodCart foodCart){
 		
 		FoodCart emptyCart = cartService.clearCart(foodCart);
 		

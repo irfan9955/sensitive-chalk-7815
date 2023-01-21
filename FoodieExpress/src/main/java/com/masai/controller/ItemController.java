@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.exception.ItemNotFoundException;
@@ -21,8 +20,7 @@ import com.masai.model.Item;
 import com.masai.model.Restaurant;
 import com.masai.service.ItemService;
 
-@RestController
-@RequestMapping("/item")
+@RestController("/item")
 public class ItemController {
 
 	
@@ -48,7 +46,7 @@ public class ItemController {
 		
 		Item updatedItem = itemService.updateItem(item);
 		
-		return new ResponseEntity<Item>(updatedItem, HttpStatus.ACCEPTED);
+		return new ResponseEntity<Item>(updatedItem, HttpStatus.OK);
 		
 	}
 	
@@ -59,7 +57,7 @@ public class ItemController {
 		
 		Item existedItem = itemService.viewItem(itemId);
 		
-		return new ResponseEntity<Item>(existedItem, HttpStatus.ACCEPTED);
+		return new ResponseEntity<Item>(existedItem, HttpStatus.OK);
 		
 	}
 	
@@ -70,7 +68,7 @@ public class ItemController {
 		
 		Item deletedItem = itemService.removeItem(itemId);
 		
-		return new ResponseEntity<Item>(deletedItem, HttpStatus.ACCEPTED);
+		return new ResponseEntity<Item>(deletedItem, HttpStatus.OK);
 		
 	}
 	

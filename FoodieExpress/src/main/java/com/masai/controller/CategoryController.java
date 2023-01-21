@@ -56,7 +56,7 @@ public class CategoryController {
 		
 		Category cat2 = cService.viewCategory(categoryId);
 		
-		return new ResponseEntity<Category>(cat2, HttpStatus.ACCEPTED);
+		return new ResponseEntity<Category>(cat2, HttpStatus.OK);
 	}
 	
 	

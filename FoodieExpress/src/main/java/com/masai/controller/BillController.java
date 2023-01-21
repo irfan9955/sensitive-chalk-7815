@@ -28,10 +28,6 @@ public class BillController {
 	private BillService bService;
 	
 	
-	@GetMapping("/hello")
-	public String hello() {
-		return "Hello";
-	}
 	
 	@PostMapping("/bill")
 	public ResponseEntity<Bill> registeBillHandler(@RequestBody Bill bill) throws BillException{
@@ -68,8 +64,8 @@ public class BillController {
 		return new ResponseEntity<Bill>(bill1,HttpStatus.OK);
 	}
 	
-	@GetMapping("/getBillByDate")
-	public ResponseEntity<List<Bill>> getBillByDate(@RequestParam String startDate,@RequestParam String endDate) throws BillException{
+//	@GetMapping("/getBillByDate")
+//	public ResponseEntity<List<Bill>> getBillByDate(@RequestParam String startDate,@RequestParam String endDate) throws BillException{
 		
 //		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 //		
@@ -77,13 +73,11 @@ public class BillController {
 //		
 //		LocalDate end = LocalDate.parse(endDate, dtf);
 			
-		List<Bill> list = bService.viewAllBills(startDate, endDate);
-		
-		
-		
-		return new ResponseEntity<List<Bill>>(list,HttpStatus.OK);
-		
-	}
+//		List<Bill> list = bService.viewAllBills(startDate, endDate);
+//		
+//		return new ResponseEntity<List<Bill>>(list,HttpStatus.OK);
+//		
+//	}
 	
 	@GetMapping("/getTotalAmount/{id}")
 	public ResponseEntity<Double> getTotalAmountHandler1(@PathVariable("id")Integer id) throws BillException{
