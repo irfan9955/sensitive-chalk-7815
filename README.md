@@ -51,9 +51,9 @@ This project is developed by a team of 4 members with the help of the Spring-Boo
  - View list of available items.
  - Add items to food cart, view cart details, placing the order, update and access other features.
  
- ## Home-page swagger
+<!--  ## Home-page swagger
  
- ![home-s](https://user-images.githubusercontent.com/103949784/213902843-b2ef097b-91d9-415e-baaf-099921b569b5.PNG)
+ ![home-s](https://user-images.githubusercontent.com/103949784/213902843-b2ef097b-91d9-415e-baaf-099921b569b5.PNG) -->
  
  ## Schemas
 
