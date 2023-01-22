@@ -25,10 +25,6 @@ This project is developed by a team of 4 members with the help of the Spring-Boo
 - Swagger-UI
 - Lombok
 
-## ER- Diagram
-![Er-diagram](https://user-images.githubusercontent.com/101379495/213903200-10b62ca4-cd7c-476c-9bc7-fdbb8e4de54b.png)
-
-
 ## Modules
 - Login Module
 - Restaurant Module
@@ -37,6 +33,12 @@ This project is developed by a team of 4 members with the help of the Spring-Boo
 - Items Module
 - Food Cart Module
 - Bill Module
+
+## ER- Diagram
+![Er-diagram](https://user-images.githubusercontent.com/101379495/213903200-10b62ca4-cd7c-476c-9bc7-fdbb8e4de54b.png)
+
+
+
 
 ## Features
 - Customer and Admin authentication & validation with session uniqueId.
@@ -55,7 +57,7 @@ This project is developed by a team of 4 members with the help of the Spring-Boo
  
  ![home-s](https://user-images.githubusercontent.com/103949784/213902843-b2ef097b-91d9-415e-baaf-099921b569b5.PNG) -->
  
- ## Schemas
+ ## Controllers
 
  ![Schema](https://user-images.githubusercontent.com/101379495/213903563-bcf66f20-10f4-4769-94f6-c97f22a06cef.png)
  
