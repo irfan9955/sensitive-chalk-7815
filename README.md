@@ -5,6 +5,15 @@
 
 This project is developed by a team of 4 members with the help of the Spring-Boot framework. The main objective of this Web services application is to cater needs of front-end developers to call different types of API as per the requirement.
 
+# Team Members
+
+<h4>1. Md Irfan(Team Lead)</h4>
+
+<h4>2. Abhishek Kumar</h4>
+
+<h4>3. Rishabh Mishra</h4>
+
+<h4>4. Vinay Pathania</h4>
 
 ## Tech Stack and Tools
 - Java
@@ -80,22 +89,14 @@ This project is developed by a team of 4 members with the help of the Spring-Boo
 ![sach](https://user-images.githubusercontent.com/103949784/213903227-bdce7208-5031-4615-991e-2c4917ac9409.PNG)
 
 
-# Team Members
 
-<h4>1. Md Irfan(Team Lead)</h4>
-
-<h4>2. Abhishek Kumar</h4>
-
-<h4>3. Rishabh Mishra</h4>
-
-<h4>4. Vinay Pathania</h4>
 
 
   
 ## Installation & Run
 - To run this API server, you should update the database configuration inside the application.properties file which is present in the src/main/resources folder.
 - Update the port number, username and password as per your local database configuration.
-server.port=8008
+server.port=8080
 spring.datasource.url=jdbc:mysql://localhost:3306/FoodExpress;
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 spring.datasource.username=your_username_here
@@ -106,5 +107,5 @@ spring.datasource.password=your_password_here
 https://localhost:8080/
 ```
 ```
-https://localhost:8888/swagger-ui.html
+https://localhost:8080/swagger-ui.html
 ```
