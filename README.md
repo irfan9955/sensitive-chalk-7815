@@ -55,6 +55,10 @@ This project is developed by a team of 4 members with the help of the Spring-Boo
  
  ![home-s](https://user-images.githubusercontent.com/103949784/213902843-b2ef097b-91d9-415e-baaf-099921b569b5.PNG)
  
+ ## Schemas
+
+ ![Schema](https://user-images.githubusercontent.com/101379495/213903563-bcf66f20-10f4-4769-94f6-c97f22a06cef.png)
+ 
  ## Login-controller swagger
 
  ![login](https://user-images.githubusercontent.com/103949784/213902961-e4d1868e-9ff8-4da2-9e7f-c745231655dd.PNG)
@@ -83,14 +87,6 @@ This project is developed by a team of 4 members with the help of the Spring-Boo
  ## Item-controller swagger
 
 ![Item](https://user-images.githubusercontent.com/103949784/213903251-819a6f9a-8e30-47fd-8441-e1c747622a89.PNG)
-
-
-  ## Schemas
-
-![sach](https://user-images.githubusercontent.com/103949784/213903227-bdce7208-5031-4615-991e-2c4917ac9409.PNG)
-
-
-
 
 
   
