@@ -152,7 +152,9 @@ public class CartServiceImpl implements CartService {
 
 	
 	@Override
-	public FoodCart removeItemFromCart(FoodCart foodCart, Item item) throws FoodCartException {
+	public FoodCart removeItemFromCart(Integer foodCartId, Item item) throws FoodCartException {
+		
+		FoodCart foodCart = cartRepository.findById(foodCartId).orElseThrow(() -> new FoodCartException("No such food cart found....."));		
 		
 		if(foodCart.getItems().contains(item)) {
 			
@@ -175,6 +177,8 @@ public class CartServiceImpl implements CartService {
 		
 		FoodCart foodCart = cartRepository.findById(foodCartId).orElseThrow(() -> new FoodCartException("This cart doesn't exist.....Please add new cart through Customer"));
 		
+		FoodCart deletedFoodCart = foodCart;
+		
 		foodCart.getItems().clear();
 		
 		Customer customer = customerRepository.findById(foodCart.getCustomer().getCustomerId()).orElseThrow(() -> new FoodCartException("This Customer has no foodCart........"));
@@ -184,14 +188,13 @@ public class CartServiceImpl implements CartService {
 		Address address = addressRepository.findById(addressId).orElseThrow(() -> new FoodCartException("This Address of Customer does not exist....."));
 		
 		addressRepository.delete(address);
+		
 		cartRepository.delete(foodCart);
 		
 		customerRepository.delete(customer);
 
 		
-		
-		
-	 	return foodCart;
+	 	return deletedFoodCart;
 	}
 
 

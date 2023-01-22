@@ -67,10 +67,10 @@ public class CartController {
 	
 	
 	
-	@DeleteMapping("/removeItem")
-	public ResponseEntity<FoodCart> removeItemFromCartHandler(@Valid @RequestBody FoodCart foodCart,@Valid @RequestBody Item item){
+	@DeleteMapping("/removeItem/{foodCartId}")
+	public ResponseEntity<FoodCart> removeItemFromCartHandler(@PathVariable Integer foodCartId,@Valid @RequestBody Item item){
 		
-		FoodCart updateCart = cartService.removeItemFromCart(foodCart, item);
+		FoodCart updateCart = cartService.removeItemFromCart(foodCartId, item);
 		
 		return new ResponseEntity<FoodCart>(updateCart, HttpStatus.ACCEPTED);
 		

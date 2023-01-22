@@ -16,7 +16,7 @@ public interface CartService {
 	
 	public FoodCart reduceQuantityOfItem(FoodCart foodCart, Item item, Integer quantity) throws FoodCartException;
 	
-	public FoodCart removeItemFromCart(FoodCart foodCart, Item item) throws FoodCartException;
+	public FoodCart removeItemFromCart(Integer foodCartId, Item item) throws FoodCartException;
 	
 	public FoodCart clearCart(Integer foodCartId) throws FoodCartException;
 	
