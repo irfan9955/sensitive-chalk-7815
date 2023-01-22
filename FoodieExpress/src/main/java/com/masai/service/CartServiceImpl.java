@@ -7,11 +7,15 @@ import org.springframework.stereotype.Service;
 
 import com.masai.exception.CustomerNotFound;
 import com.masai.exception.FoodCartException;
+import com.masai.exception.ItemNotFoundException;
+import com.masai.model.Address;
 import com.masai.model.Customer;
 import com.masai.model.FoodCart;
 import com.masai.model.Item;
+import com.masai.repository.AddressRepository;
 import com.masai.repository.CartRepository;
 import com.masai.repository.CustomerRepo;
+import com.masai.repository.ItemRepository;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -22,6 +26,12 @@ public class CartServiceImpl implements CartService {
 	
 	@Autowired
 	private CustomerRepo customerRepository;
+	
+	@Autowired
+	private ItemRepository itemRepository;
+	
+	@Autowired
+	private AddressRepository addressRepository;
 
 
 	@Override
@@ -48,15 +58,25 @@ public class CartServiceImpl implements CartService {
 	
 
 	@Override
-	public FoodCart addItemToCart(FoodCart foodCart, Item item) throws FoodCartException {
+	public FoodCart addItemToCart(Integer foodCartId, Integer itemId) throws FoodCartException {
 		
-		if(foodCart.getItems().contains(item)) throw new FoodCartException("This Item is already in cart (if want then increse quantity)....");
 		
-		foodCart.getItems().add(item);
+//		List<FoodCart> cartList = cartRepository.findAll();
 		
-		FoodCart updatedCart = cartRepository.save(foodCart);
+		FoodCart currentCart = cartRepository.findById(foodCartId).orElseThrow(() -> new FoodCartException("This cart is Not Found..... Please make one first through Customer"));
 		
+//		FoodCart currentCart = cartOptional.get();
+		
+		Item item = itemRepository.findById(itemId).orElseThrow(() -> new ItemNotFoundException("This Item is not present int Data...."));
+			
+		if(currentCart.getItems().contains(item)) throw new FoodCartException("This Item is already in cart (if want then increse quantity)....");
+			
+		currentCart.getItems().add(item);
+			
+		FoodCart updatedCart = cartRepository.save(currentCart);
+			
 		return updatedCart;
+			
 	}
 
 	
@@ -151,15 +171,27 @@ public class CartServiceImpl implements CartService {
 
 	
 	@Override
-	public FoodCart clearCart(FoodCart foodCart) throws FoodCartException {
-
-		if(foodCart.getItems().isEmpty()) throw new FoodCartException("Cart is already Empty....");
+	public FoodCart clearCart(Integer foodCartId) throws FoodCartException {
+		
+		FoodCart foodCart = cartRepository.findById(foodCartId).orElseThrow(() -> new FoodCartException("This cart doesn't exist.....Please add new cart through Customer"));
 		
 		foodCart.getItems().clear();
 		
-		FoodCart emptyCart = cartRepository.save(foodCart);
+		Customer customer = customerRepository.findById(foodCart.getCustomer().getCustomerId()).orElseThrow(() -> new FoodCartException("This Customer has no foodCart........"));
 		
-		return emptyCart;
+		Integer addressId = customer.getAddress().getAddressId();
+		
+		Address address = addressRepository.findById(addressId).orElseThrow(() -> new FoodCartException("This Address of Customer does not exist....."));
+		
+		addressRepository.delete(address);
+		cartRepository.delete(foodCart);
+		
+		customerRepository.delete(customer);
+
+		
+		
+		
+	 	return foodCart;
 	}
 
 

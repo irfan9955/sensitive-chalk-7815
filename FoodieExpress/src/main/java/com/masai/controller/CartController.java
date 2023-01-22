@@ -35,10 +35,10 @@ public class CartController {
 	}
 	
 	
-	@PostMapping("/addItemToCart")
-	public ResponseEntity<FoodCart> addItemToCartHandler(@RequestBody FoodCart foodCart, @RequestBody Item item){
+	@PostMapping("/addItemToCart/{foodCartId}/{itemId}")
+	public ResponseEntity<FoodCart> addItemToCartHandler(@PathVariable Integer foodCartId,@PathVariable Integer itemId){
 		
-		FoodCart updatedCart = cartService.addItemToCart(foodCart, item);
+		FoodCart updatedCart = cartService.addItemToCart(foodCartId, itemId);
 		
 		return new ResponseEntity<FoodCart>(updatedCart, HttpStatus.ACCEPTED);
 		
@@ -79,10 +79,10 @@ public class CartController {
 
 
 
-	@PutMapping(value = "/clearCart")
-	public ResponseEntity<FoodCart> cleartCartHandler(@Valid @RequestBody FoodCart foodCart){
+	@DeleteMapping(value = "/clearCart/{foodCartId}")
+	public ResponseEntity<FoodCart> cleartCartHandler(@PathVariable Integer foodCartId){
 		
-		FoodCart emptyCart = cartService.clearCart(foodCart);
+		FoodCart emptyCart = cartService.clearCart(foodCartId);
 		
 		return new ResponseEntity<FoodCart>(emptyCart, HttpStatus.ACCEPTED);
 		
