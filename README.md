@@ -17,6 +17,7 @@ This project is developed by a team of 4 members with the help of the Spring-Boo
 
 ## Tech Stack and Tools
 - Java
+- Maven
 - Spring Boot Framework
 - Spring Data JPA
 - Hibernate
@@ -84,7 +85,7 @@ This project is developed by a team of 4 members with the help of the Spring-Boo
 ![Item](https://user-images.githubusercontent.com/103949784/213903251-819a6f9a-8e30-47fd-8441-e1c747622a89.PNG)
 
 
-  ## Schemas-controller swagger
+  ## Schemas
 
 ![sach](https://user-images.githubusercontent.com/103949784/213903227-bdce7208-5031-4615-991e-2c4917ac9409.PNG)
 
