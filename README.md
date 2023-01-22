@@ -16,15 +16,7 @@ This project is developed by a team of 4 members with the help of the Spring-Boo
 - Lombok
 
 ## ER- Diagram
-<p>
-        <img
-        align="center"
-        src="https://github.com/parimalbiswas/tropical-jellyfish-2222/blob/main/ER%20-DIA.jpg?raw=true"
-        alt="Coding"
-        width="700"
-        style="display: block"/>
-    </p>
-    <br>
+![Er-diagram](https://user-images.githubusercontent.com/101379495/213903200-10b62ca4-cd7c-476c-9bc7-fdbb8e4de54b.png)
 
 
 ## Modules
