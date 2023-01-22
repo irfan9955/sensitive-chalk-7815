@@ -15,6 +15,8 @@ import javax.persistence.OneToOne;
 
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,8 +34,9 @@ public class FoodCart {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String cartId;
+	private Integer cartId;
 	
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	private Customer customer;
 	
