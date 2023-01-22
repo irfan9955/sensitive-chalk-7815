@@ -29,7 +29,7 @@ public class OrderDetails {
 	
 	private LocalDate orderDate = LocalDate.now();
 	
-	@JsonIgnore
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	private FoodCart cart;
 	

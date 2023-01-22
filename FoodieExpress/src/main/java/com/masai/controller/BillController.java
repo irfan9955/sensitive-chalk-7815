@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.exception.BillException;
 import com.masai.model.Bill;
+import com.masai.model.BillDto;
 import com.masai.service.BillService;
 
 
@@ -30,12 +31,12 @@ public class BillController {
 	
 	
 	@PostMapping("/bill")
-	public ResponseEntity<Bill> registeBillHandler(@RequestBody Bill bill) throws BillException{
+	public ResponseEntity<BillDto> registeBillHandler(@RequestBody Bill bill) throws BillException{
 		
-		Bill bill1 = bService.addBill(bill);
+		BillDto bil1 = bService.addBill(bill);
 		
 		
-		return new ResponseEntity<Bill>(bill1,HttpStatus.CREATED);
+		return new ResponseEntity<>(bil1,HttpStatus.CREATED);
 		
 	}
 	

@@ -108,7 +108,7 @@ public class ItemServiceImpl implements ItemService {
 		List<Item> itemList = itemRepository.findAll();
 		for(Item item : itemList) {
 			
-			if(item.getCategory().getCategoryName().equals(category.getCategoryName())){
+			if(item.getCategory().equals(category)){
 				listByCategory.add(item);
 			}
 			

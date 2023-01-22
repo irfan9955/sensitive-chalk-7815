@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.masai.exception.CustomerNotFound;
-import com.masai.exception.FoodCartException;
 import com.masai.model.FoodCart;
 import com.masai.model.Item;
 import com.masai.service.CartService;
@@ -26,19 +24,10 @@ public class CartController {
 	private CartService cartService;
 	
 	
-	@PostMapping("/createFoodCart/{customerId}")
-	public ResponseEntity<FoodCart> addNewFoodCartHandler(@PathVariable Integer customerId,@Valid @RequestBody FoodCart foodCart) throws FoodCartException, CustomerNotFound{
+	@PostMapping("/addItemToCart")
+	public ResponseEntity<FoodCart> addItemToCartHandler(@RequestBody FoodCart foodCart, @RequestBody Item item){
 		
-		FoodCart savedFoodCart = cartService.addNewFoodCart(customerId, foodCart);
-		
-		return new ResponseEntity<>(savedFoodCart,HttpStatus.CREATED);
-	}
-	
-	
-	@PostMapping("/addItemToCart/{foodCartId}/{itemId}")
-	public ResponseEntity<FoodCart> addItemToCartHandler(@PathVariable Integer foodCartId,@PathVariable Integer itemId){
-		
-		FoodCart updatedCart = cartService.addItemToCart(foodCartId, itemId);
+		FoodCart updatedCart = cartService.addItemToCart(foodCart, item);
 		
 		return new ResponseEntity<FoodCart>(updatedCart, HttpStatus.ACCEPTED);
 		
@@ -79,10 +68,10 @@ public class CartController {
 
 
 
-	@DeleteMapping(value = "/clearCart/{foodCartId}")
-	public ResponseEntity<FoodCart> cleartCartHandler(@PathVariable Integer foodCartId){
+	@PutMapping(value = "/clearCart")
+	public ResponseEntity<FoodCart> cleartCartHandler(@Valid @RequestBody FoodCart foodCart){
 		
-		FoodCart emptyCart = cartService.clearCart(foodCartId);
+		FoodCart emptyCart = cartService.clearCart(foodCart);
 		
 		return new ResponseEntity<FoodCart>(emptyCart, HttpStatus.ACCEPTED);
 		

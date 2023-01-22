@@ -1,6 +1,6 @@
 package com.masai.service;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.masai.exception.BillException;
 import com.masai.model.Bill;
+import com.masai.model.BillDto;
+import com.masai.model.Item;
 import com.masai.repository.BillRepo;
 
 
@@ -19,15 +21,34 @@ public class BillServiceImpl implements BillService {
 	private BillRepo bRepo;
 
 	@Override
-	public Bill addBill(Bill bill) throws BillException {
+	public BillDto addBill(Bill bill) throws BillException {
 
 		if (bill == null) {
 			throw new BillException("Please Enter Valid Input");
 		}
 
 		Bill b1 = bRepo.save(bill);
+		
+		BillDto bd = new BillDto();
 
-		return b1;
+		bd.setCustomerName(b1.getOrder().getCart().getCustomer().getFirstName()+" "+b1.getOrder().getCart().getCustomer().getLastname());
+		
+		bd.setLocaldatetime(LocalDateTime.now());
+		
+		List<Item> items = b1.getOrder().getCart().getItems();
+		
+		bd.setItems(items);
+		
+		Double totalCost = 0.00;
+		
+		for(Item i : items) {
+			totalCost += i.getCost();
+		}
+		
+		bd.setTotalCost(totalCost);
+		
+		
+		return bd;
 
 	}
 
